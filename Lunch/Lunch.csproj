@@ -100,6 +100,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <Content Include="Views\Person\Index.cshtml" />
+    <Content Include="Content\Site.css" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web.config" />
@@ -118,6 +119,7 @@
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Views\Person\" />
+    <Folder Include="Content\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
