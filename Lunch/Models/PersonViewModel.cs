@@ -5,6 +5,10 @@ namespace Lunch.Models
     {
         public PersonViewModel()
         {
+            public int? PersonId { get; set; }
+            public string LastName { get; set; }
+            public string FirstName { get; set; }
+            public string FullName => FirstName + " " + LastName;
         }
     }
 }
