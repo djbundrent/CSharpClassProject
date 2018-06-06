@@ -43,5 +43,23 @@ namespace Lunch.Controllers
 
             return View(personList);
         }
+
+        public ActionResult PersonDetail(int id)
+        {
+            var person = People.SingleOrDefault(p => p.PersonId == id);
+            if (person != null)
+            {
+                var personViewModel = new PersonViewModel
+                {
+                    PersonId = person.PersonId,
+                    LastName = person.LastName,
+                    FirstName = person.FirstName
+                };
+
+                return View(personViewModel);
+            }
+
+            return new HttpNotFoundResult();
+        }
     }
 }
