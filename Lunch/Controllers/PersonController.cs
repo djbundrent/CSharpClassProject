@@ -68,5 +68,22 @@ namespace Lunch.Controllers
 
             return View("AddEditPerson", personViewModel);
         }
+
+        [HttpPost]
+        public ActionResult AddPerson(PersonViewModel personViewModel)
+        {
+            var nextPersonId = People.Max(p => p.PersonId) + 1;
+
+            var person = new Person
+            {
+                PersonId = nextPersonId,
+                LastName = personViewModel.LastName,
+                FirstName = personViewModel.FirstName
+            };
+
+            People.Add(person);
+
+            return RedirectToAction("Index");
+        }
     }
 }
