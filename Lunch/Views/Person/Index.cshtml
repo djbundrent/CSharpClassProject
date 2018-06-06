@@ -24,4 +24,9 @@
     </tbody>
 </table>
 
-Total People: @Model.TotalPeople
+<div class="col-sm-12 form-group">
+    <label>Total People:</label> @Model.TotalPeople
+</div>
+<div class="col-sm-12">
+    @Html.ActionLink("Add Person", "PersonAdd", null, new { @class = "btn btn-primary" })
+</div>

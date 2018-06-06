@@ -61,5 +61,12 @@ namespace Lunch.Controllers
 
             return new HttpNotFoundResult();
         }
+
+        public ActionResult PersonAdd()
+        {
+            var personViewModel = new PersonViewModel();
+
+            return View("AddEditPerson", personViewModel);
+        }
     }
 }
