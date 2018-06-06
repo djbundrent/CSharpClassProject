@@ -1,37 +1,42 @@
-﻿using System;
+﻿using Lunch.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Lunch.Models;
 
 namespace Lunch.Controllers
 {
     public class PersonController : Controller
     {
-        // GET: Person
+        public static List<Person> People = new List<Person>
+                    {
+                        new Person { PersonId = 1, LastName = "Halpert", FirstName = "Jim" },
+                        new Person { PersonId = 2, LastName = "Beesly", FirstName = "Pam" },
+                        new Person { PersonId = 3, LastName = "Scott", FirstName = "Michael"},
+                        new Person { PersonId = 4, LastName = "Schrute", FirstName = "Dwight" },
+                        new Person { PersonId = 5, LastName = "Martin", FirstName = "Angela" },
+                        new Person { PersonId = 6, LastName = "Bernard", FirstName = "Andy" },
+                        new Person { PersonId = 7, LastName = "Malone", FirstName = "Kevin" },
+                        new Person { PersonId = 8, LastName = "Kapoor", FirstName = "Kelly" },
+                        new Person { PersonId = 9, LastName = "Palmer", FirstName = "Meredith" },
+                        new Person { PersonId = 10, LastName = "Flenderson", FirstName = "Toby" },
+                        new Person { PersonId = 11, LastName = "Hudson", FirstName = "Stanley" },
+                        new Person { PersonId = 12, LastName = "Bratton", FirstName = "Creed" },
+                        new Person { PersonId = 13, LastName = "Vance", FirstName = "Phyllis" },
+                        new Person { PersonId = 14, LastName = "Howard", FirstName = "Ryan" },
+                        new Person { PersonId = 15, LastName = "Philbin", FirstName = "Darryl" }
+                    };
+
         public ActionResult Index()
         {
             var personList = new PersonListViewModel
             {
-                People = new List<PersonViewModel>
+                //Convert each Person to a PersonViewModel
+                People = People.Select(p => new PersonViewModel
                 {
-                    new PersonViewModel { PersonId = 1, LastName = "Halpert", FirstName = "Jim" },
-                    new PersonViewModel { PersonId = 2, LastName = "Beesly", FirstName = "Pam" },
-                    new PersonViewModel { PersonId = 3, LastName = "Scott", FirstName = "Michael"},
-                    new PersonViewModel { PersonId = 4, LastName = "Schrute", FirstName = "Dwight" },
-                    new PersonViewModel { PersonId = 5, LastName = "Martin", FirstName = "Angela" },
-                    new PersonViewModel { PersonId = 6, LastName = "Bernard", FirstName = "Andy" },
-                    new PersonViewModel { PersonId = 7, LastName = "Malone", FirstName = "Kevin" },
-                    new PersonViewModel { PersonId = 8, LastName = "Kapoor", FirstName = "Kelly" },
-                    new PersonViewModel { PersonId = 9, LastName = "Palmer", FirstName = "Meredith" },
-                    new PersonViewModel { PersonId = 10, LastName = "Flenderson", FirstName = "Toby" },
-                    new PersonViewModel { PersonId = 11, LastName = "Hudson", FirstName = "Stanley" },
-                    new PersonViewModel { PersonId = 12, LastName = "Bratton", FirstName = "Creed" },
-                    new PersonViewModel { PersonId = 13, LastName = "Vance", FirstName = "Phyllis" },
-                    new PersonViewModel { PersonId = 14, LastName = "Howard", FirstName = "Ryan" },
-                    new PersonViewModel { PersonId = 15, LastName = "Philbin", FirstName = "Darryl" }
-                }
+                    PersonId = p.PersonId,
+                    LastName = p.LastName,
+                    FirstName = p.FirstName
+                }).ToList()
             };
 
             personList.TotalPeople = personList.People.Count;
