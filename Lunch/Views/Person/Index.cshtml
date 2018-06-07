@@ -18,7 +18,10 @@
         {
             <tr>
                 <td>@Model.People[i].FullName</td>
-                <td>@Html.ActionLink("Detail", "PersonDetail", new { id = Model.People[i].PersonId })</td>
+                <td>
+                    @Html.ActionLink("Detail", "PersonDetail", new { id = Model.People[i].PersonId })
+                    | @Html.ActionLink("Edit", "PersonEdit", new { id = Model.People[i].PersonId })
+                </td>
             </tr>
         }
     </tbody>
