@@ -85,5 +85,39 @@ namespace Lunch.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public ActionResult PersonEdit(int id)
+        {
+            var person = People.SingleOrDefault(p => p.PersonId == id);
+            if (person != null)
+            {
+                var personViewModel = new PersonViewModel
+                {
+                    PersonId = person.PersonId,
+                    LastName = person.LastName,
+                    FirstName = person.FirstName
+                };
+
+                return View("AddEditPerson", personViewModel);
+            }
+
+            return new HttpNotFoundResult();
+        }
+
+        [HttpPost]
+        public ActionResult EditPerson(PersonViewModel personViewModel)
+        {
+            var person = People.SingleOrDefault(p => p.PersonId == personViewModel.PersonId);
+
+            if (person != null)
+            {
+                person.LastName = personViewModel.LastName;
+                person.FirstName = personViewModel.FirstName;
+
+                return RedirectToAction("Index");
+            }
+
+            return new HttpNotFoundResult();
+        }
     }
 }
