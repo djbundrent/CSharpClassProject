@@ -119,5 +119,20 @@ namespace Lunch.Controllers
 
             return new HttpNotFoundResult();
         }
+
+        [HttpPost]
+        public ActionResult DeletePerson(PersonViewModel personViewModel)
+        {
+            var person = People.SingleOrDefault(p => p.PersonId == personViewModel.PersonId);
+
+            if (person != null)
+            {
+                People.Remove(person);
+
+                return RedirectToAction("Index");
+            }
+
+            return new HttpNotFoundResult();
+        }
     }
 }
